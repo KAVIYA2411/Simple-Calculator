@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculator</title>
+    <style>
+        *{
+    background-color: #3b4561; 
+    background: cover;
+}
+
+.p{
+    font-family: 'Times New Roman';
+    font-size: larger;
+    color: #ffffff;
+}
+#display{
+    position:absolute;
+    width: 536px;
+    height: 142.73px;
+    top: 194px;
+    left: 466px;
+    gap: 10px;
+    border-radius: 12px;
+    opacity: 0px;
+    box-shadow: #00000040;
+    color: white;
+    background-color: #121b34; 
+    font-family: Segoe UI;
+    font-size: 55px;
+    font-weight: 700;
+    line-height: 73.15px;
+    text-align: right;
+    overflow-y: hidden;
+    box-sizing: border-box;
+    
+}
+.panel{
+    position:absolute;
+    width: 536px;
+    height: 487px;
+    top: 363px;
+    left: 466px;
+    gap: 40px;
+    background-color:#1f2535;
+    border-radius: 12px;
+}
+.calculator__keys{
+    position:absolute;
+    background-color:#1f2535;
+    color: white;
+    width: Hug (466px)px;
+    height: Hug (422px)px;
+    top: 48px;
+    left: 35px;
+    gap: 23px;
+    opacity: 0px;
+ 
+}
+#child{
+    flex: 1 0 21%; 
+    margin: 5px;
+    width: 100px;
+    height: 60px;
+    gap: 0px;
+    border-radius: 12px ;
+    opacity: 0px;
+    background: rgb(255, 255, 255);
+    font-family: Inter;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 36.31px;
+    text-align: center;
+    color:#3b4561 ;
+
+
+}
+#span-1{
+    flex: 1 0 21%;
+    margin: 5px;
+    width: 100px;
+    height: 60px;
+    gap: 0px;
+    opacity: 0px;
+    border-radius: 12px ;
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 29.05px;
+    text-align: center;
+    color:rgb(255, 255, 255);
+}
+#rearrange{
+    margin-left:9px;
+    width: 200px;
+    height: 60px;
+    gap: 30px;
+    border-radius: 11.52px ;
+    font-family: Inter;
+    font-size: 24px;
+    color: white;
+    font-weight: 800;
+    line-height: 29.05px;
+    text-align: center;
+    bottom:0;
+    
+}
+
+#key--equal{
+    margin: 30px;
+    width: 200px;
+    height: 60px;
+    gap: 70px;
+    opacity: 0px;
+    border-radius: 11.52px ;
+    font-family: Inter;
+    font-size: 25px;
+    text-align: center;
+    background: rgb(255, 0, 0);
+    color: white;
+    bottom: 0%;
+   
+}
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <p>calc</p>
+        <div class="calculator">
+            <input type="text" id="display" disabled>
+            <div class="panel">
+                <div class="calculator__keys">
+                    <input type="button" value="7" id="child" onclick="addToDisplay('7')">
+                    <input type="button" value="8" id="child" onclick="addToDisplay('8')">
+                    <input type="button" value="9" id="child" onclick="addToDisplay('9')">
+                    <input type="button" value="DEL" id="span-1" onclick="deleteLastDigit()"><br>
+                    <input type="button" value="4" id="child" onclick="addToDisplay('4')">
+                    <input type="button" value="5" id="child" onclick="addToDisplay('5')">
+                    <input type="button" value="6" id="child" onclick="addToDisplay('6')">
+                    <input type="button" value="+" id="child" onclick="addToDisplay('+')"><br>
+                    <input type="button" value="1" id="child" onclick="addToDisplay('1')">
+                    <input type="button" value="2" id="child" onclick="addToDisplay('2')">
+                    <input type="button" value="3" id="child" onclick="addToDisplay('3')">
+                    <input type="button" value="-" id="child" onclick="addToDisplay('-')"><br>
+                    <input type="button" value="." id="child" onclick="addToDisplay('.')">
+                    <input type="button" value="0" id="child" onclick="addToDisplay('0')">
+                    <input type="button" value="/" id="child" onclick="addToDisplay('/')">
+                    <input type="button" value="x" id="child" onclick="addToDisplay('x')"><br>
+                    <input type="button" value="RESET" id="rearrange" onclick="clearDisplay()">
+                    <input type="button" value="="  id="key--equal" onclick="calculate()">
+                </div>
+                
+            </div>
+        </div>  
+    </div>
+    <script >    
+        function addToDisplay(value) {
+    document.getElementById('display').value += value;
+}
+
+function clearDisplay() {
+    document.getElementById('display').value = '';
+}
+
+function calculate() {
+    let input = document.getElementById('display').value;
+    
+    try {
+        let result = eval(input);
+        
+        if (isNaN(result) || !isFinite(result)) {
+            document.getElementById('display').value = 'Invalid Input';
+        } else {
+            document.getElementById('display').value = result;
+        }
+    } catch (error) {
+        document.getElementById('display').value = 'Invalid Input';
+    }
+
+}
+
+function deleteLastDigit() {
+    let currentValue = document.getElementById('display').value;
+    document.getElementById('display').value = currentValue.slice(0, -1);
+}
+    </script>
+</body>
+</html>
